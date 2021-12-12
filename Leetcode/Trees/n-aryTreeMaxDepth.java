@@ -9,7 +9,7 @@
 class Solution {
     public int maxDepth(Node root) {
         if(root==null) return 0;
-        int mx=0;git 
+        int mx=0;
         if(root.children!=null){
             for(int i=0;i<root.children.size();i++){
                 mx=Math.max(mx,maxDepth(root.children.get(i)));
