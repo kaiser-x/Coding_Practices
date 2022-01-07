@@ -24,7 +24,7 @@ class Solution {
 public:
     int splitArray(vector<int>& nums, int m) {
         int n=nums.size();
-        //the worst case woul be to split the array int n sub arrays,at that time the low 
+        //the worst case would be to split the array int n sub arrays,at that time the low 
         //will be max element of the array,similary if n=1 the the high will be sum of total
         //array,so lowest possible answer is max element of array and highest answer
         //is sum of the whole array;
