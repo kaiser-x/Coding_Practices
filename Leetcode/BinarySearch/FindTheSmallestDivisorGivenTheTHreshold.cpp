@@ -12,7 +12,7 @@ class Solution {
         return sum;
     }
 public:
-//the minimum dicisor will be 1 and maximum will be max(nums) array ,
+//the minimum divisor will be 1 and maximum will be max(nums) array ,
 // because after that the summation will become constant
     int smallestDivisor(vector<int>& nums, int threshold) {
         int n=nums.size();
