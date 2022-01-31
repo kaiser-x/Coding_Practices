@@ -61,7 +61,7 @@ public:
        int size=trust.size();
        for(int i=0;i<size;i++){
           //like said earlier if someone trusts other so they are not
-          //town judge ,this for outdgree calculation
+          //town judge ,this for outdegree calculation
           out[trust[i][0]]++;
          //indgree calculation
           in[trust[i][1]]++;
@@ -74,5 +74,16 @@ public:
         }
     return -1;
     }
-  
+  //just finding the indegree and by subtracting all the outdegrees of number and return the i value
+  //which has indegree n-1
+//   vector<int> Trusted(N + 1, 0);
+//         for(auto person : trust){
+//             Trusted[person[0]]--;
+//             Trusted[person[1]]++;
+//         }
+//         for(int i = 1;i <= N;i++){
+//             if(Trusted[i] == N - 1)
+//                 return i;
+//         }
+//         return -1;
 };
