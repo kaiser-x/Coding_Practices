@@ -12,8 +12,10 @@ public:
     string addBinary(string a, string b) {
         string s="";
         int i=a.size()-1,j=b.size()-1,carry=0;
-        while(1){
-            if(i<0&&j<0&&carry==0) break;
+        while(i>=0||j>=0||carry>0){
+            // instead having while as while(1) and having this break if statement
+            //just change the while loop to while(i>=0||j>=0||carry>0)
+            // if(i<0&&j<0&&carry==0) break;
             int sum=0;
             if(i>=0){
                 sum+=a[i]-'0';
