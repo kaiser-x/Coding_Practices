@@ -31,25 +31,70 @@ public:
        //  return res;
         
         //so we using a hash of vector
-          int n1=s.size();
-        int k=p.size();
-        int i=0,j=0;
+       //  int n1=s.size();
+       //  int k=p.size();
+       //  int i=0,j=0;
+       //  vector<int> res;
+       // // map<char,int>mp;
+       // // map<char,int> pmp;
+       //  vector<int> mp(26);
+       //  vector<int> pmp(26);
+       // for(int i=0;i<k;i++) pmp[p[i]-'a']++;
+       //  while(j<n1){
+       //      mp[s[j]-'a']++;
+       //      if(j-i+1<k) j++;
+       //      else if(j-i+1==k){
+       //          if(mp==pmp) res.push_back(i);
+       //          mp[s[i]-'a']--;
+       //          i++;
+       //          j++;
+       //      }
+       //  }
+       //  return res;
+  
+    //now on to the next step using sliding window technique of aditya verma
+    /* So what he meant is we need to create a map for the frequencies of chaar 
+     in p string, then take count of distinct chars map is for individual freq and count is 
+     umber of distint chars, at first calc part we check if thechar at j is present in the
+     map,if it is then we reduce its freq ,we do this as tocross out the matched char, but if
+     the freq of char at j becomes 0 ,then no. of ditinct char is reduced by 1 so we reduce
+     count by 1 ,now regular j++ for fixed size SW, when we hit the window, we just need 
+     to check if all distinct chars have been matched tha is, if count is equal to 0, if 
+     it is then jus do what question asked, now to slide the window, always the arr[j] is
+     always handled outside that particular else if, but arr[i] we need to take care of 
+     it ,so if the char at i pos thats gonna leave the window was present in the freq map of p
+     pattern string then we need to increase freq of that char by 1,and if it was 0 before
+     increasing , that means no. of distinct char increased by 1 so count increased by 1
+     and then slide window increement i and j*/
+        int n1=s.size(),k=p.size();
+        unordered_map<char,int> mp;
+        for(auto i:p) mp[i]++;
+        int count=mp.size();
         vector<int> res;
-       // map<char,int>mp;
-       // map<char,int> pmp;
-        vector<int> mp(26);
-        vector<int> pmp(26);
-       for(int i=0;i<k;i++) pmp[p[i]-'a']++;
+        int i=0,j=0;
         while(j<n1){
-            mp[s[j]-'a']++;
+            //calculation part
+            if(mp.find(s[j])!=mp.end()){
+                mp[s[j]]--;
+                if(mp[s[j]]==0) count--;
+            }
+            //same part in all fixed size SW
             if(j-i+1<k) j++;
+            
             else if(j-i+1==k){
-                if(mp==pmp) res.push_back(i);
-                mp[s[i]-'a']--;
+                //answer from calculation
+                if(count==0) res.emplace_back(i);
+                //sliding the window
+                if(mp.find(s[i])!=mp.end()){
+                   if( mp[s[i]]==0)
+                    count++;
+                     mp[s[i]]++;
+                }
                 i++;
                 j++;
             }
         }
         return res;
+        
     }
 };
