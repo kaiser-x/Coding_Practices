@@ -18,7 +18,7 @@ public:
     //Obviously the brute would be to use three loops,and check if they sum to 0
     //but TC would be O(n3) ,which is a no no.
     //Another way would be to keep a+b in two loop and creating a hash for the 
-    //third var c suchthat c=-(a+b),and then sort the abc adn insert them into set
+    //third var c suchthat c=-(a+b),and then sort the abc and insert them into set
     //bad idea but it works ,O(n2*logm) m is number of unique answers,and SC O(M+N)
     //Equation is a+b+c=0,a+b is taken from loop,c is needed to be found using the
     //hash, because c=-(a+b) //this would lead to tle too.

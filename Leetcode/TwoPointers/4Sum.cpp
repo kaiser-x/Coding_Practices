@@ -35,7 +35,7 @@ public:
         while(i<n-3){
             j=i+1;
             //n-2 because its ahead of i and always will and its second
-            //elemnt for the laast window of size 4,similar to 3sum
+            //elemnt for the last window of size 4,similar to 3sum
             while(j<n-2){
                 //toavoid overlfow while adding,we are suntracting 
                 //from target and saving it in target2
