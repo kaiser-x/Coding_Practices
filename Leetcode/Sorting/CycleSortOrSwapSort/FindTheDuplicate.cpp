@@ -29,6 +29,7 @@ public:
             else
                 i++;
         }
+        
         // for(int i=0;i<n;i++) cout<<nums[i]<<" ";
         for(int i=0;i<n;i++){
             if(nums[i]!=i+1) return nums[i];

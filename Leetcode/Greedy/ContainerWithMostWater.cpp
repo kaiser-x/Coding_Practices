@@ -37,6 +37,8 @@ public:
             if(area>max){
                 max=area;
             }
+            //as max area can only be obtained if height is greater,
+            //so we check if height of i is greater or j is greater
             if(height[i]>height[j]) j--;
             else i++;
         }
