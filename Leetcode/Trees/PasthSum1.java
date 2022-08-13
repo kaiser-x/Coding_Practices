@@ -24,3 +24,19 @@ class Solution {
         
     }
 }
+
+//count no of paths
+int helper(TreeNode* root,int sum,int target){
+    if(root==NULL) return 0;
+    sum+=root->val;
+    if(root->left==NULL&&root->right==NULL) {
+       if(sum==target) return 1;
+       return 0;
+    }
+    return helper(root->left,sum,target)+helper(root->right,sum,target);
+}
+int pathSum(TreeNode* root, int target)
+{
+    // Write your code here.
+    return helper(root,0,target);
+}

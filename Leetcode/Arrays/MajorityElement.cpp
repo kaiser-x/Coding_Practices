@@ -38,4 +38,15 @@ int findMajorityElement(int arr[], int n) {
     }
     if(count>(n/2)) return candidate;
     return -1;
+
+    // leetcode
+    
+     int c=0,mj;
+        for(int i=0;i<n;i++){
+            if(nums[i]==mj) c++;
+            else if(c==0){
+                mj=nums[i]; c=1;
+            }else c--;
+        }
+        return mj;
 }

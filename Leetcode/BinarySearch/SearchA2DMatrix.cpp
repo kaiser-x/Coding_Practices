@@ -35,3 +35,52 @@ public:
         return false;
     }
 };
+
+optimal approach 
+#include <bits/stdc++.h> 
+#include <vector>
+
+bool findTargetInMatrix(vector < vector < int >> & mat, int m, int n, int target) {
+    // Write your code here.
+    //in this question it's menttioned that the row is sorted and the first
+    //element of any row will be greater than the last element of prev row,
+    //if exists, so if we consider it as a single array, we can apply
+    //binary search,
+     //the idea here i to mark each cell{i.e mat[i][j]} ,as induvidual numbers,
+    //for example, if m=3and n=3, it dorm a 3X3 matrix, so we mark each cell
+    //of the 9 cells from 0 to 8, 
+//     Given Matrix:
+//                                         0  1  2
+//                                    ---------------
+//                                     0 | 1  3  5
+//                                     1 | 7  9  10
+//                                     2 |12  15 17
+
+// If we convert this to a 1D matrix:
+
+//                         0  1  2  3  4   5   6   7   8 
+//                     --------------------------------------
+//                          1  3  5  7  9  10  12  15  17
+// Here we can see first 3 no. of linear space are 1st row(or total no. of columns)
+// Now our task is to map the [row][col] of each matrix with a single integer value, in the above example:
+// 1st row:
+//                     [0][0] = 0    3*0 + 0 = 0
+//                     [0][1] = 1    3*0 + 1 = 1
+//                     [0][2] = 2    3*0 + 2 = 2
+// So a cell value can be calculated by:
+// cell value = Total col * row + col.
+// To get the row we’ll divide the cell value by the total column:
+// row = cell value / Total col.
+// For columns, we have to take the remainder values when an int is divided by the column value.
+// col = cell value % Total col.
+// Now simply run Binary search algorithm & search the target.
+    int low=0,high=m*n-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            int i=mid/n,j=mid%n;
+            if(mat[i][j]==target) return true;
+            else if(mat[i][j]>target) high=mid-1;
+            else low=mid+1;
+        }
+    return false;
+}
