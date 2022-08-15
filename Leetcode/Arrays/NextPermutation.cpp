@@ -1,4 +1,4 @@
-#include <bits/stdc++.h> 
+CPP Code:
 
 /*so the idea is kinda base on dictionary, lexographical array will kinda look
 like a rotated sorted array,not exactly like it,but the last its and linearly
@@ -41,12 +41,37 @@ vector<int> nextPermutation(vector<int> &arr, int n)
     
     //more concise manner
     int i=n-2;
-    while(i>=0&&arr[i]>arr[i+1]) i--;
+    while(i>=0&&arr[i]>=arr[i+1]) i--;
     if(i>=0){
         int j=n-1;
-        while(j>=0&&arr[j]<arr[i]) j--;
+        while(j>=0&&arr[j]<=arr[i]) j--;
         swap(arr[i],arr[j]);
     }
     reverse(arr.begin()+i+1,arr.end());
     return arr;
+}
+
+Java Code: 
+
+class Solution {
+    static void swap(int nums[],int i,int j){
+        int t=nums[i];
+        nums[i]=nums[j];
+        nums[j]=t;
+    }
+    static void reverse(int nums[],int i,int j){
+        while(i<j) swap(nums,i++,j--);
+    }
+    public void nextPermutation(int[] nums) {
+        int n=nums.length;
+        if(n<=1) return;
+        int i=n-2;
+        while(i>=0&&nums[i]>=nums[i+1]) i--;
+        if(i>=0){
+        int j=n-1;
+        while(j>=0&&nums[j]<=nums[i]) j--;
+            swap(nums,i,j);
+        }
+        reverse(nums,i+1,n-1);
+      }
 }
