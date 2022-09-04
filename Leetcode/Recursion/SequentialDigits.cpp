@@ -23,7 +23,8 @@
 //sequential digit is made ,if num is greater than high range then just
 //return 
 class Solution {
-public:vector<int>ans;
+public:
+vector<int>ans;
     // void helper(int n,int &l,int &h,int k){
     //     if(k==11) return;
     //     if(n<l) helper(n*10+k,l,h,k+1);
