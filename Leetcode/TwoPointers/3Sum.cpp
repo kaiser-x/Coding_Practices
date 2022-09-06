@@ -100,3 +100,33 @@ public:
         return res;
     }
 };
+
+// Java
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> al=new ArrayList<>();
+        int n=nums.length;
+        int i=0;
+        while(i<n-2){
+            int l=i+1,h=n-1;
+            //a+b+c=a0,b+c=-1*a.
+            int a=nums[i];
+            while(l<h){
+                int sum=nums[l]+nums[h];
+                if(sum==-1*a){
+                    al.add(Arrays.asList(nums[i],nums[l],nums[h]));
+                    l++;
+                    h--;
+                    while(l<h&&nums[l]==nums[l-1]) l++;
+                    while(l<h&&nums[h]==nums[h+1]) h--;
+                }else if(sum<-1*a) l++;
+                else h--;
+            }
+            i++;
+            while(i<n-2&&nums[i]==nums[i-1]) i++;
+        }
+        return al;
+    }
+}
