@@ -8,7 +8,6 @@
 // There may be multiple nodes in the same row and same column. In such a case, sort these 
 // nodes by their values.
 // Return the vertical order traversal of the binary tree.
-
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -30,15 +29,9 @@ public:
     find the column element, with hteir hight difference, now you may ask why do we need the lvl, it is so
     that we can have sorted answer accordind to the leve, bcs column answer starts from top to bottom, so
     we use map instead of unordered_map, as map we can store according to hd and then by level*/
-    vector<vector<int>> verticalTraversal(TreeNode* root) {
-        vector<vector<int>> res;
-        if(root==nullptr) return res;
-        //treenode to travers, then storea lvl and height idfference of that node.
+    void bfs(TreeNode* root,map<int,map<int,multiset<int>>> &mp){
+        // treenode to travers, then storea lvl and height idfference of that node.
         queue<pair<TreeNode*,pair<int,int>>> q;
-        //to store nodes in sorted order of height difference and then by levle we use a map.
-        map<int,map<int,multiset<int>>> mp;
-        //havinng vector will not work, explained down below.
-         // map<int,map<int,vector<int>>> mp;
         q.push({root,{0,0}});
         while(!q.empty()){
             auto ele=q.front(); q.pop();
@@ -54,6 +47,24 @@ public:
             if(node->left!=nullptr) q.push({node->left,{lvl+1,height_diff-1}});
             if(node->right!=nullptr) q.push({node->right,{lvl+1,height_diff+1}});
         }
+    }
+    void dfs(TreeNode* root,map<int,map<int,multiset<int>>> &mp,int lvl,int hd){
+        if(root==nullptr) return;
+        mp[hd][lvl].insert(root->val);
+        dfs(root->left,mp,lvl+1,hd-1);
+        dfs(root->right,mp,lvl+1,hd+1);
+    }
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        vector<vector<int>> res;
+        if(root==nullptr) return res;
+        //to store nodes in sorted order of height difference and then by levle we use a map.
+        map<int,map<int,multiset<int>>> mp;
+        //havinng vector will not work, explained down below.
+         // map<int,map<int,vector<int>>> mp;
+        //bfs
+        // bfs(root,mp);
+        //dfs 
+        dfs(root,mp,0,0);
         /*Now the map will look like this:
                 hd:0 lvl0
                 3 
