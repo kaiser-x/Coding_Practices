@@ -62,3 +62,20 @@ public:
         return helper(nums,0,n-1,n);
     }
 };
+//java
+
+class Solution {
+    static TreeNode dfs(int []nums,int low,int high){
+        if(low>high) return null;
+        int mid=low+(high-low)/2;
+        TreeNode root=new TreeNode(nums[mid]);
+        root.left=dfs(nums,low,mid-1);
+        root.right=dfs(nums,mid+1,high);
+        return root;
+    }
+    public TreeNode sortedArrayToBST(int[] nums) {
+        int n=nums.length;
+        if(n==1) return new TreeNode(nums[0]);
+        return dfs(nums,0,n-1);
+    }
+}
